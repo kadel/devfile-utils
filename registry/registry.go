@@ -83,7 +83,9 @@ func (r *DevfileIndex) populateIndex() {
 	if len(r.index) != 0 {
 		return
 	}
-	registryIndex, err := registryLibrary.GetRegistryIndex(r.registryUrl, false, "", schema.StackDevfileType)
+	registryIndex, err := registryLibrary.GetRegistryIndex(r.registryUrl, registryLibrary.RegistryOptions{
+		Telemetry: registryLibrary.TelemetryData{},
+	}, "", schema.StackDevfileType)
 
 	if err != nil {
 		panic(err)
